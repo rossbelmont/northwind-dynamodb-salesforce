@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<Package xmlns="http://soap.sforce.com/2006/04/metadata">
+    <types>
+        <members>Account.Customer_ID__c</members>
+        <name>CustomField</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>CustomObject</name>
+    </types>
+    <types>
+        <members>awsDynamodbXds</members>
+        <name>ExternalDataSource</name>
+    </types>
+    <types>
+        <members>*</members>
+        <name>ExternalDataSrcDescriptor</name>
+    </types>
+    <types>
+        <members>awss4</members>
+        <name>NamedCredential</name>
+    </types>
+    <version>55.0</version>
+</Package>

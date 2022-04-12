@@ -1,0 +1,413 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<ExternalDataSource xmlns="http://soap.sforce.com/2006/04/metadata">
+    <customConfiguration>{&quot;timeout&quot;:&quot;120&quot;}</customConfiguration>
+    <externalDataSrcDescriptors>
+        <fullName>Category_Qualifiers</fullName>
+        <customObject>Category__x</customObject>
+        <descriptor>{
+  &quot;columns&quot;: {
+  &quot;pk&quot;: {
+    &quot;filter&quot;:&quot;categories#%&quot;,
+    &quot;values&quot;: [
+           {
+               &quot;definition&quot;:&quot;\&quot;categories#\&quot; + TEXT(category)&quot;
+           }
+   ]
+  },
+ &quot;sk&quot;: {
+    &quot;values&quot;: [
+           {
+               &quot;definition&quot;:&quot;categoryName&quot;
+           }
+   ]
+  },
+  &quot;category&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;presence&quot;:&quot;exists&quot;,
+    &quot;values&quot;: [
+             {
+                   &quot;definition&quot;:&quot;MID(pk, FIND(\&quot;#\&quot;, pk) + 1, LEN(pk))&quot; 
+             }
+     ]
+  },
+  &quot;categoryName&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;presence&quot;:&quot;exists&quot;,
+    &quot;values&quot;: [
+             {
+                   &quot;definition&quot;:&quot;sk&quot; 
+             }
+     ]
+  }
+}
+}</descriptor>
+        <descriptorVersion>0</descriptorVersion>
+        <developerName>Category_Qualifiers</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>Product_Qualifiers</fullName>
+        <customObject>Product__x</customObject>
+        <descriptor>{
+  &quot;columns&quot;:{
+  &quot;pk&quot;: {
+    &quot;filter&quot;:&quot;products#%&quot;,
+    &quot;values&quot;: [{&quot;definition&quot;:&quot; \&quot;products#\&quot; +product&quot;}]
+  },
+  &quot;sk&quot;: {
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;\&quot;PRODUCT\&quot;&quot;}]
+  },
+  &quot;supplierID&quot;: {
+    &quot;presence&quot;:&quot;exists&quot;
+  },
+  &quot;product&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;values&quot;: [{&quot;definition&quot;:&quot;RIGHT(pk, LEN(pk) - FIND(\&quot;#\&quot;, pk))&quot;}]
+  },
+&quot;unitPrice&quot;: {
+&quot;presence&quot;:&quot;exists&quot;,
+&quot;type&quot;:&quot;S&quot;,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(UnitPrice)&quot;}]
+},
+&quot;UnitPrice&quot;: {
+&quot;virtual&quot;: true,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(unitPrice)&quot;}]
+},
+&quot;unitsInStock&quot;: {
+&quot;presence&quot;:&quot;exists&quot;,
+&quot;type&quot;:&quot;S&quot;,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(UnitsInStock)&quot;}]
+},
+&quot;UnitsInStock&quot;: {
+&quot;virtual&quot;: true,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(unitsInStock)&quot;}]
+},
+&quot;unitsOnOrder&quot;: {
+&quot;presence&quot;:&quot;exists&quot;,
+&quot;type&quot;:&quot;S&quot;,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(UnitsOnOrder)&quot;}]
+},
+&quot;UnitsOnOrder&quot;: {
+&quot;virtual&quot;: true,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(unitsOnOrder)&quot;}]
+},
+&quot;reorderLevel&quot;: {
+&quot;presence&quot;:&quot;exists&quot;,
+&quot;type&quot;:&quot;S&quot;,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(ReorderLevel)&quot;}]
+},
+&quot;ReorderLevel&quot;: {
+&quot;virtual&quot;: true,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(reorderLevel)&quot;}]
+},
+&quot;data&quot;: {
+&quot;presence&quot;:&quot;exists&quot;,
+&quot;type&quot;:&quot;S&quot;,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(discontinued)&quot;}]
+},
+&quot;discontinued&quot;: {
+&quot;virtual&quot;: true,
+&quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(data)&quot;}]
+}
+}
+}</descriptor>
+        <descriptorVersion>0</descriptorVersion>
+        <developerName>Product_Qualifiers</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_METADATA01Ixx0000005dAx</fullName>
+        <customObject>Supplier__x</customObject>
+        <descriptor>{&quot;systemVersion&quot;:1,&quot;partiQlTableName&quot;:&quot;northwind&quot;,&quot;primaryIndex&quot;:{&quot;primary&quot;:true,&quot;name&quot;:&quot;PrimaryKey&quot;,&quot;partitionKey&quot;:&quot;pk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;sk&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]},&quot;secondaryIndices&quot;:{&quot;gsi_1&quot;:{&quot;primary&quot;:false,&quot;name&quot;:&quot;gsi_1&quot;,&quot;partitionKey&quot;:&quot;sk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;data&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]}},&quot;indicesKeyTypes&quot;:{&quot;data&quot;:&quot;STRING_SHORT&quot;,&quot;sk&quot;:&quot;STRING_SHORT&quot;,&quot;pk&quot;:&quot;STRING_SHORT&quot;}}</descriptor>
+        <developerName>SCHEMA_TABLE_METADATA01Ixx0000005dAx</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableMetadata</subtype>
+        <systemVersion>1</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_METADATA01Ixx0000005dCZ</fullName>
+        <customObject>Category__x</customObject>
+        <descriptor>{&quot;systemVersion&quot;:1,&quot;partiQlTableName&quot;:&quot;northwind&quot;,&quot;primaryIndex&quot;:{&quot;primary&quot;:true,&quot;name&quot;:&quot;PrimaryKey&quot;,&quot;partitionKey&quot;:&quot;pk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;sk&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]},&quot;secondaryIndices&quot;:{&quot;gsi_1&quot;:{&quot;primary&quot;:false,&quot;name&quot;:&quot;gsi_1&quot;,&quot;partitionKey&quot;:&quot;sk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;data&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]}},&quot;indicesKeyTypes&quot;:{&quot;data&quot;:&quot;STRING_SHORT&quot;,&quot;sk&quot;:&quot;STRING_SHORT&quot;,&quot;pk&quot;:&quot;STRING_SHORT&quot;}}</descriptor>
+        <developerName>SCHEMA_TABLE_METADATA01Ixx0000005dCZ</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableMetadata</subtype>
+        <systemVersion>1</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_METADATA01Ixx0000005dHP</fullName>
+        <customObject>Product__x</customObject>
+        <descriptor>{&quot;systemVersion&quot;:1,&quot;partiQlTableName&quot;:&quot;northwind&quot;,&quot;primaryIndex&quot;:{&quot;primary&quot;:true,&quot;name&quot;:&quot;PrimaryKey&quot;,&quot;partitionKey&quot;:&quot;pk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;sk&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]},&quot;secondaryIndices&quot;:{&quot;gsi_1&quot;:{&quot;primary&quot;:false,&quot;name&quot;:&quot;gsi_1&quot;,&quot;partitionKey&quot;:&quot;sk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;data&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]}},&quot;indicesKeyTypes&quot;:{&quot;data&quot;:&quot;STRING_SHORT&quot;,&quot;sk&quot;:&quot;STRING_SHORT&quot;,&quot;pk&quot;:&quot;STRING_SHORT&quot;}}</descriptor>
+        <developerName>SCHEMA_TABLE_METADATA01Ixx0000005dHP</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableMetadata</subtype>
+        <systemVersion>1</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_METADATA01Ixx0000005dSh</fullName>
+        <customObject>Shipper__x</customObject>
+        <descriptor>{&quot;systemVersion&quot;:1,&quot;partiQlTableName&quot;:&quot;northwind&quot;,&quot;primaryIndex&quot;:{&quot;primary&quot;:true,&quot;name&quot;:&quot;PrimaryKey&quot;,&quot;partitionKey&quot;:&quot;pk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;sk&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]},&quot;secondaryIndices&quot;:{&quot;gsi_1&quot;:{&quot;primary&quot;:false,&quot;name&quot;:&quot;gsi_1&quot;,&quot;partitionKey&quot;:&quot;sk&quot;,&quot;partitionKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;sortKey&quot;:&quot;data&quot;,&quot;sortKeyType&quot;:&quot;STRING_SHORT&quot;,&quot;projectedColumns&quot;:[]}},&quot;indicesKeyTypes&quot;:{&quot;data&quot;:&quot;STRING_SHORT&quot;,&quot;sk&quot;:&quot;STRING_SHORT&quot;,&quot;pk&quot;:&quot;STRING_SHORT&quot;}}</descriptor>
+        <developerName>SCHEMA_TABLE_METADATA01Ixx0000005dSh</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableMetadata</subtype>
+        <systemVersion>1</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dalEAA</fullName>
+        <customObject>Order__x</customObject>
+        <descriptor>{
+ &quot;columns&quot;:{
+  &quot;pk&quot;:{
+    &quot;postFilter&quot;:&quot;^[0-9]+$&quot;,
+    &quot;type&quot;:&quot;S&quot;
+  },
+  &quot;sk&quot;:{
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;\&quot;ORDER\&quot;&quot;}]
+   },
+   &quot;data&quot;:{
+    &quot;presence&quot;:&quot;any&quot;,
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(orderDate)&quot; }]
+  },
+  &quot;orderDate&quot;:{
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;DATEVALUE(data)&quot;}]
+  },
+  &quot;requiredDate&quot;:{
+    &quot;presence&quot;:&quot;any&quot;,
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(required)&quot; }]
+  },
+  &quot;required&quot;:{
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;DATEVALUE(requiredDate)&quot;}]
+  },
+  &quot;shippedDate&quot;:{
+    &quot;presence&quot;:&quot;any&quot;,
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(shipped)&quot; }]
+  },
+  &quot;shipped&quot;:{
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;DATEVALUE(shippedDate)&quot;}]
+  },
+  &quot;freight&quot;: {
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(FreightPrice)&quot;}]
+  },
+  &quot;FreightPrice&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;type&quot;:&quot;N&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(freight)&quot;}]
+   }
+ }
+}</descriptor>
+        <developerName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dalEAA</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dcNEAQ</fullName>
+        <customObject>Order_Details__x</customObject>
+        <descriptor>{
+ &quot;columns&quot;:{
+  &quot;pk&quot;:{
+   &quot;postFilter&quot;: &quot;^[0-9]+$&quot;
+   },
+  &quot;sk&quot;:{
+   &quot;filter&quot;: &quot;products#%&quot;
+   },
+   &quot;data&quot;: {
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(price)&quot;}]
+  },
+  &quot;price&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;type&quot;:&quot;N&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(data)&quot;}]
+   },
+   &quot;quantity&quot;: {
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(quant)&quot;}]
+  },
+  &quot;quant&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;type&quot;:&quot;N&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(quantity)&quot;}]
+   },
+   &quot;discount&quot;: {
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(disc/100)&quot;}]
+  },
+  &quot;disc&quot;: {
+    &quot;virtual&quot;: true,
+    &quot;type&quot;:&quot;N&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;VALUE(discount)*100&quot;}]
+   }
+ }
+}</descriptor>
+        <developerName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dcNEAQ</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dShEAI</fullName>
+        <customObject>Shipper__x</customObject>
+        <descriptor>{
+  &quot;columns&quot;:{
+  &quot;pk&quot;:{
+    &quot;filter&quot;:&quot;shippers#%&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;\&quot;shippers#\&quot;+shipper&quot;}]
+  },
+  &quot;shipper&quot;:{
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;MID(pk, FIND(\&quot;#\&quot;, pk)+1, LEN(pk))&quot;}]
+  }
+ }
+}</descriptor>
+        <developerName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dShEAI</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dUJEAY</fullName>
+        <customObject>Employee__x</customObject>
+        <descriptor>{
+ &quot;columns&quot;:{
+  &quot;pk&quot;: {
+    &quot;filter&quot;:&quot;employees#%&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot; \&quot;employees#\&quot; +employee&quot;}]
+  },
+  &quot;employee&quot;: {
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;RIGHT(pk, LEN(pk) - FIND(\&quot;#\&quot;, pk))&quot; }]
+  },
+  &quot;birthDate&quot;:{
+    &quot;presence&quot;:&quot;any&quot;,
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(birth)&quot; }]
+  },
+  &quot;birth&quot;:{
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;DATEVALUE(birthDate)&quot;}]
+  },
+  &quot;data&quot;:{
+    &quot;presence&quot;:&quot;any&quot;,
+    &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;TEXT(hire)&quot;}]
+  },
+  &quot;hire&quot;:{
+    &quot;virtual&quot;:true,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;DATEVALUE(data)&quot;}]
+  }
+}
+}</descriptor>
+        <developerName>SCHEMA_TABLE_QUALIFIERS01Ixx0000005dUJEAY</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <externalDataSrcDescriptors>
+        <fullName>Supplier_Qualifiers</fullName>
+        <customObject>Supplier__x</customObject>
+        <descriptor>{
+  &quot;columns&quot;: {
+  &quot;pk&quot;: {
+    &quot;filter&quot;:&quot;suppliers#%&quot;,
+    &quot;values&quot;: [
+           {
+               &quot;definition&quot;:&quot;\&quot;suppliers#\&quot; +supplier&quot;
+           }
+   ]
+  },
+  &quot;sk&quot;: {
+    &quot;presence&quot;:&quot;exists&quot;,
+    &quot;values&quot;:[{&quot;definition&quot;:&quot;\&quot;SUPPLIER\&quot;&quot;}]
+  },
+  &quot;supplier&quot;: {
+    &quot;virtual&quot;: true,
+     &quot;type&quot;:&quot;S&quot;,
+    &quot;values&quot;: [
+             {
+                   &quot;definition&quot;:&quot;MID(pk, FIND(\&quot;#\&quot;, pk) + 1, LEN(pk))&quot; 
+             }
+     ]
+  },
+  &quot;data&quot;:{
+     &quot;presence&quot;:&quot;any&quot;,
+     &quot;type&quot;:&quot;S&quot;,
+     &quot;values&quot;:[
+          {
+                &quot;definition&quot;:&quot;country + \&quot;#\&quot; + region + \&quot;#\&quot; + city + \&quot;#\&quot; + address&quot;
+          }
+     ]
+   },
+   &quot;country&quot;:{
+      &quot;virtual&quot;:true,
+      &quot;type&quot;:&quot;S&quot;,
+      &quot;values&quot;:[
+          {
+                &quot;definition&quot;:&quot;LEFT(data, FIND(\&quot;#\&quot;, data)-1)&quot;
+          }
+     ]
+   },
+   &quot;region&quot;:{
+      &quot;virtual&quot;:true,
+      &quot;type&quot;:&quot;S&quot;,
+      &quot;values&quot;:[
+          {
+                &quot;definition&quot;:&quot;MID(data, FIND(\&quot;#\&quot;, data)+1, FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data)+1)-FIND(\&quot;#\&quot;, data)-1)&quot;
+          }
+     ]
+   },
+   &quot;city&quot;:{
+      &quot;virtual&quot;:true,
+      &quot;type&quot;:&quot;S&quot;,
+      &quot;values&quot;:[
+          {
+                &quot;definition&quot;:&quot;MID(data, FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data)+1)+1, FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data)+1)+1)-FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data)+1)-1)&quot;
+          }
+     ]
+   },
+   &quot;address&quot;:{
+      &quot;virtual&quot;:true,
+      &quot;type&quot;:&quot;S&quot;,
+      &quot;values&quot;:[
+          {
+                &quot;definition&quot;:&quot;&quot;,
+                &quot;definition&quot;:&quot;RIGHT(data, LEN(data)-FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data, FIND(\&quot;#\&quot;, data)+1)+1))&quot;
+          }
+     ]
+   }
+}
+}</descriptor>
+        <descriptorVersion>0</descriptorVersion>
+        <developerName>Supplier_Qualifiers</developerName>
+        <externalDataSource>awsDynamodbXds</externalDataSource>
+        <subtype>SchemaTableQualifiers</subtype>
+        <systemVersion>0</systemVersion>
+        <type>Schema</type>
+    </externalDataSrcDescriptors>
+    <isWritable>true</isWritable>
+    <label>awsDynamodbXds</label>
+    <namedCredential>awss4</namedCredential>
+    <principalType>Anonymous</principalType>
+    <protocol>NoAuthentication</protocol>
+    <type>AmazonDynamoDb</type>
+</ExternalDataSource>
