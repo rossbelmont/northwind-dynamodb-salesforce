@@ -1,0 +1,83 @@
+{
+  "columns": {
+    "pk": {
+      "postFilter": "^[0-9]+$",
+      "type": "S"
+    },
+    "sk": {
+      "values": [
+        {
+          "definition": "\"ORDER\""
+        }
+      ]
+    },
+    "data": {
+      "presence": "any",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(orderDate)"
+        }
+      ]
+    },
+    "orderDate": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "DATEVALUE(data)"
+        }
+      ]
+    },
+    "requiredDate": {
+      "presence": "any",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(required)"
+        }
+      ]
+    },
+    "required": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "DATEVALUE(requiredDate)"
+        }
+      ]
+    },
+    "shippedDate": {
+      "presence": "any",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(shipped)"
+        }
+      ]
+    },
+    "shipped": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "DATEVALUE(shippedDate)"
+        }
+      ]
+    },
+    "freight": {
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(FreightPrice)"
+        }
+      ]
+    },
+    "FreightPrice": {
+      "virtual": true,
+      "type": "N",
+      "values": [
+        {
+          "definition": "VALUE(freight)"
+        }
+      ]
+    }
+  }
+}
