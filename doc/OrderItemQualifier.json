@@ -1,0 +1,56 @@
+{
+  "tableName": "northwind",
+  "columns": {
+    "pk": {
+      "postFilter": "^[0-9]+$"
+    },
+    "sk": {
+      "filter": "products#%"
+    },
+    "productCode": {
+      "virtual": true,
+      "values": [{
+        "definition": "RIGHT(sk, LEN(sk) - FIND(\"#\", sk))"
+      }]
+    },
+    "data": {
+      "type": "S",
+      "values": [{
+        "definition": "TEXT(price)"
+      }]
+    },
+    "price": {
+      "virtual": true,
+      "type": "N",
+      "values": [{
+        "definition": "VALUE(data)"
+      }]
+    },
+    "quantity": {
+      "type": "S",
+      "values": [{
+        "definition": "TEXT(quant)"
+      }]
+    },
+    "quant": {
+      "virtual": true,
+      "type": "N",
+      "values": [{
+        "definition": "VALUE(quantity)"
+      }]
+    },
+    "discount": {
+      "type": "S",
+      "values": [{
+        "definition": "TEXT(disc/100)"
+      }]
+    },
+    "disc": {
+      "virtual": true,
+      "type": "N",
+      "values": [{
+        "definition": "VALUE(discount)*100"
+      }]
+    }
+  }
+}
