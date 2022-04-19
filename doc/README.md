@@ -1,5 +1,7 @@
-### About this folder
+## About this folder
 This folder shows qualifiers separated from the data source for convenience and instructional purposes. The qualifier syntax shown for each object shows a variety of useful examples to help you in your own projects.
+
+---
 
 ### Order
 - The partition key (`pk` attribute) is a String formatted like an integer (e.g. `10594`). The regex `^[0-9]+$` is used to find the "integer" along with the static `sk` value `ORDER` to identify a given row in DynamoDB as an Order.
@@ -16,7 +18,7 @@ This folder shows qualifiers separated from the data source for convenience and 
   - Note that, ideally, the Discount field would be represented as a Percentage in Salesforce. Percentage fields must be mapped to a Number in DynamoDB, however, and since the source attribute is a String, it is represented as a Number field.
 
 ### Shipper
-This object deviates from the modeling approach in the earlier example for the sake of illustrating certain concepts relevant to Salesforce administrators.
+This object deviates from the modeling approach in [the prerequisite](https://github.com/trek10inc/ddb-single-table-example) for the sake of illustrating certain concepts relevant to Salesforce administrators.
 - The name of the company is moved from the sort key to a specific `companyName` attribute to allow the name to be edited without the cost of another transaction.
 - The sort key is populated with the static value `SHIPPER` to allow for simpler External IDs in Salesforce.
 - The `expeditingCharge` Number attribute is added as an illustration of how to render a Currency value in Salesforce. DynamoDB does not have a native data type for currency, so the currency is inferred in Salesforce by either the org-wide currency or the `currencyIsoCode`of the record (in the case of multi-currency). Note that no qualifier is needed.
