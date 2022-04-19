@@ -1,0 +1,74 @@
+{
+  "columns": {
+    "pk": {
+      "filter": "suppliers#%",
+      "values": [
+        {
+          "definition": "\"suppliers#\" +supplier"
+        }
+      ]
+    },
+    "sk": {
+      "presence": "exists",
+      "values": [
+        {
+          "definition": "\"SUPPLIER\""
+        }
+      ]
+    },
+    "supplier": {
+      "virtual": true,
+      "type": "S",
+      "values": [
+        {
+          "definition": "MID(pk, FIND(\"#\", pk) + 1, LEN(pk))"
+        }
+      ]
+    },
+    "data": {
+      "presence": "any",
+      "type": "S",
+      "values": [
+        {
+          "definition": "country + \"#\" + region + \"#\" + city + \"#\" + address"
+        }
+      ]
+    },
+    "country": {
+      "virtual": true,
+      "type": "S",
+      "values": [
+        {
+          "definition": "LEFT(data, FIND(\"#\", data)-1)"
+        }
+      ]
+    },
+    "region": {
+      "virtual": true,
+      "type": "S",
+      "values": [
+        {
+          "definition": "MID(data, FIND(\"#\", data)+1, FIND(\"#\", data, FIND(\"#\", data)+1)-FIND(\"#\", data)-1)"
+        }
+      ]
+    },
+    "city": {
+      "virtual": true,
+      "type": "S",
+      "values": [
+        {
+          "definition": "MID(data, FIND(\"#\", data, FIND(\"#\", data)+1)+1, FIND(\"#\", data, FIND(\"#\", data, FIND(\"#\", data)+1)+1)-FIND(\"#\", data, FIND(\"#\", data)+1)-1)"
+        }
+      ]
+    },
+    "address": {
+      "virtual": true,
+      "type": "S",
+      "values": [
+        {
+          "definition": "RIGHT(data, LEN(data)-FIND(\"#\", data, FIND(\"#\", data, FIND(\"#\", data)+1)+1))"
+        }
+      ]
+    }
+  }
+}
