@@ -1,0 +1,54 @@
+{
+  "columns": {
+    "pk": {
+      "filter": "employees#%",
+      "values": [
+        {
+          "definition": " \"employees#\" +employee"
+        }
+      ]
+    },
+    "employee": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "RIGHT(pk, LEN(pk) - FIND(\"#\", pk))"
+        }
+      ]
+    },
+    "birthDate": {
+      "presence": "any",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(birth)"
+        }
+      ]
+    },
+    "birth": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "DATETIMEVALUE(birthDate)"
+        }
+      ]
+    },
+    "data": {
+      "presence": "any",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(hire)"
+        }
+      ]
+    },
+    "hire": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "DATEVALUE(data)"
+        }
+      ]
+    }
+  }
+}

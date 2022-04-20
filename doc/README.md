@@ -27,6 +27,9 @@ This object deviates from the modeling approach in [the prerequisite](https://gi
 ### Supplier
 This object makes extensive use of parsing formulas to decode an address stored in a single attribute in DynamoDB. The `data` field captures the street address as `country#region#city#address` for querying purposes (e.g. `USA#MI#Ann Arbor#707 Oxford Rd.`).
 
+### Employee
+The `birthDate` column is altered from the original example to show the use of `DATETIMEVALUE()` to map to a Date/Time field in Salesforce. [Amazon recommends](https://docs.aws.amazon.com/amazondynamodb/latest/developerguide/HowItWorks.NamingRulesDataTypes.html) such data be stored as a String attribute in [ISO 8601](http://en.wikipedia.org/wiki/ISO_8601) format (e.g. `2015-12-21T17:42:34Z`).
+
 ### Category
 Category is included for completeness, though the fact that the sort key contains the category name creates several issues. The qualifier here shows how the data can be decoded, but it would likely be more advantageous to take the approach described above for the Shipper object.
 
