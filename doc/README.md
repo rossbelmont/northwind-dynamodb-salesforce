@@ -26,3 +26,9 @@ This object deviates from the modeling approach in [the prerequisite](https://gi
 
 ### Supplier
 This object makes extensive use of parsing formulas to decode an address stored in a single attribute in DynamoDB. The `data` field captures the street address as `country#region#city#address` for querying purposes (e.g. `USA#MI#Ann Arbor#707 Oxford Rd.`).
+
+### Category
+Category is included for completeness, though the fact that the sort key contains the category name creates several issues. The qualifier here shows how the data can be decoded, but it would likely be more advantageous to take the approach described above for the Shipper object.
+
+### Account
+Account has no qualifier, but is included here for convenience to round out the example. Deploying the metadata in this repo will add a Customer ID field to Account that can be populated for the Indirect Lookup from Order to Account.
