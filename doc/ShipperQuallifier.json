@@ -1,0 +1,27 @@
+{
+  "columns": {
+    "pk": {
+      "filter": "shippers#%",
+      "values": [
+        {
+          "definition": "\"shippers#\"+shipper"
+        }
+      ]
+    },
+    "sk": {
+      "values": [
+        {
+          "definition": "\"SHIPPER\""
+        }
+      ]
+    },
+    "shipper": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "MID(pk, FIND(\"#\", pk)+1, LEN(pk))"
+        }
+      ]
+    }
+  }
+}
