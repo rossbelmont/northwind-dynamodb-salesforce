@@ -1,0 +1,37 @@
+{
+  "columns": {
+    "pk": {
+      "filter": "categories#%",
+      "values": [
+        {
+          "definition": "\"categories#\" + TEXT(category)"
+        }
+      ]
+    },
+    "sk": {
+      "values": [
+        {
+          "definition": "categoryName"
+        }
+      ]
+    },
+    "category": {
+      "virtual": true,
+      "presence": "exists",
+      "values": [
+        {
+          "definition": "MID(pk, FIND(\"#\", pk) + 1, LEN(pk))"
+        }
+      ]
+    },
+    "categoryName": {
+      "virtual": true,
+      "presence": "exists",
+      "values": [
+        {
+          "definition": "sk"
+        }
+      ]
+    }
+  }
+}
