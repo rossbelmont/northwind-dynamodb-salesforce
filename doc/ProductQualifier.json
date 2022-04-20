@@ -1,0 +1,115 @@
+{
+  "columns": {
+    "pk": {
+      "filter": "products#%",
+      "values": [
+        {
+          "definition": " \"products#\" +product"
+        }
+      ]
+    },
+    "sk": {
+      "values": [
+        {
+          "definition": "\"PRODUCT\""
+        }
+      ]
+    },
+    "supplierID": {
+      "presence": "exists"
+    },
+    "product": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "RIGHT(pk, LEN(pk) - FIND(\"#\", pk))"
+        }
+      ]
+    },
+    "unitPrice": {
+      "presence": "exists",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(UnitPrice)"
+        }
+      ]
+    },
+    "UnitPrice": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "VALUE(unitPrice)"
+        }
+      ]
+    },
+    "unitsInStock": {
+      "presence": "exists",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(UnitsInStock)"
+        }
+      ]
+    },
+    "UnitsInStock": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "VALUE(unitsInStock)"
+        }
+      ]
+    },
+    "unitsOnOrder": {
+      "presence": "exists",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(UnitsOnOrder)"
+        }
+      ]
+    },
+    "UnitsOnOrder": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "VALUE(unitsOnOrder)"
+        }
+      ]
+    },
+    "reorderLevel": {
+      "presence": "exists",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(ReorderLevel)"
+        }
+      ]
+    },
+    "ReorderLevel": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "VALUE(reorderLevel)"
+        }
+      ]
+    },
+    "data": {
+      "presence": "exists",
+      "type": "S",
+      "values": [
+        {
+          "definition": "TEXT(discontinued)"
+        }
+      ]
+    },
+    "discontinued": {
+      "virtual": true,
+      "values": [
+        {
+          "definition": "VALUE(data)"
+        }
+      ]
+    }
+  }
+}

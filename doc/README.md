@@ -24,6 +24,10 @@ This object deviates from the modeling approach in [the prerequisite](https://gi
 - The `expeditingCharge` Number attribute is added as an illustration of how to render a Currency value in Salesforce. DynamoDB does not have a native data type for currency, so the currency is inferred in Salesforce by either the org-wide currency or the `currencyIsoCode`of the record (in the case of multi-currency). Note that no qualifier is needed.
 - The `expeditedShipping` Boolean attribute is added as an illustration of how to render a Checkbox in Salesforce. Note that no qualifier is needed.
 
+### Product
+- Similar to Order Detail, this qualifier uses the `VALUE()` function to convert the String data in DynamoDB to a numeric value that can map to a Number field in Salesforce. Each Number field has a corresponding formula that uses the `TEXT()` function to convert the number back to a String so it can be stored in DynamoDB.
+  - Note that this second re-encoding formula is needed when users in Salesforce will *edit* the data.
+
 ### Supplier
 This object makes extensive use of parsing formulas to decode an address stored in a single attribute in DynamoDB. The `data` field captures the street address as `country#region#city#address` for querying purposes (e.g. `USA#MI#Ann Arbor#707 Oxford Rd.`).
 
