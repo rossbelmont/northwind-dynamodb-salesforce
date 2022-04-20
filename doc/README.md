@@ -2,6 +2,7 @@
 This folder shows qualifiers separated from the External Data Source for convenience and instructional purposes. The qualifier syntax shown for each object shows a variety of useful examples to help you in your own projects, and the notes below call out what is unique about each object that might be worth your attention.
 
 Drill into the files above to see the JSON syntax, and then refer to the information below for additional insight on why that syntax is needed or beneficial.
+
 ---
 
 ### Order
